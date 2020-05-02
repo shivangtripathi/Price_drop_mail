@@ -7,7 +7,7 @@ driver.maximize_window()
 driver.get('https://amazon.in')
 time.sleep(1)
 
-keyword = 'the pragmatic programmer'
+keyword = '#name of the product'
 flag=0
 
 def send_mail():
@@ -15,11 +15,11 @@ def send_mail():
     server.ehlo()
     server.starttls()
     server.ehlo()
-    server.login('stripathi_be19@thapar.edu','shivang143')
-    subject = 'THE PRICE OF YOUR CHOOSEN PRODUCT FELL DOWN UNDER 600RS/-'
+    server.login('#sender_mail','#receiver_mail')
+    subject = 'THE PRICE OF YOUR CHOOSEN PRODUCT FELL DOWN UNDER #price_assigned'
     body = 'PRODUCT ADDED TO YOUR CART. GO CHECK IT NOW BY THIS LINK \n https://www.amazon.in/cart/ebooks?&ref=ebook_dp_buybox_vc_btn'
     msg = f"Subject:{subject}\n\n{body}"
-    server.sendmail('stripathi_be19@thapar.edu','shivangtripathi2000@gmail.com',msg)
+    server.sendmail('#sender_mail','#receiver_mail',msg)
     print("Email has been sent!")
     server.quit
 
@@ -41,6 +41,6 @@ g = driver.find_element_by_xpath('//*[@id="a-autoid-11-announce"]/span[2]/span')
 price = g.text
 price = float(price[2:])
 time.sleep(1)
-if(price<=600):
+if(price<=#price_assigned):
    cart = driver.find_element_by_xpath('//*[@id="add-to-ebooks-cart-button"]').click()
    send_mail()
